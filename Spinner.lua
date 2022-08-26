@@ -110,5 +110,5 @@ function PrintRawRarities() Items:PrintRawRarities() end
 function AddItem(Name, Rarity) Items:AddItem(Name, Rarity) end
 
 function Help()
-  print(string.format("Para imprimir um valor qualquer: PrintARandomItem(Times)\nPara adicionar um item: AddItem(Name,Rarity)\n"))
+  print(string.format("To print a random item: PrintARandomItem(Times)\nTo insert a new item: AddItem(Name,Rarity)\n"))
 end
