@@ -1,4 +1,4 @@
-SL = require "SpinnerLibrary"
+SL = require "SpinnerModule"
 
 function PrintTable(Table)
   if not Table then error("Not enough arguments") end
