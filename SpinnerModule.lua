@@ -2,7 +2,7 @@
 
 -- local var = setmetatable({table},{metatable})
 --
-SpinnerLibrary = {}
+SpinnerModule = {}
 
 local GetItemRarity = function(_, Item) -- Return the raw rarity
   if _[Item] then return _[Item][2] end
@@ -69,7 +69,7 @@ local meta = {
   end,
 }
 
-function SpinnerLibrary.Random(Origin) -- Returns a random index (item)
+function SpinnerModule.Random(Origin) -- Returns a random index (item)
   local Items = setmetatable(Origin,meta)
   if Items.Total > 0 then
     Sort(Items)
@@ -85,29 +85,29 @@ function SpinnerLibrary.Random(Origin) -- Returns a random index (item)
   end
 end
 
-function SpinnerLibrary.PrintRandom(Origin,Times)
+function SpinnerModule.PrintRandom(Origin,Times)
   if not Origin then error("No origin given") return end
   local Items = setmetatable(Origin,meta)
   Items['AfterDecimals'] = 0
   if not Times then Times = 1 end
   for i = 1, Times do
-    local j = SpinnerLibrary.Random(Items)
+    local j = SpinnerModule.Random(Items)
     print(string.format("[%i] %s %." .. Items.AfterDecimals .. "f%%", i, GetItemName(Items,j),
           GetItemFrequency(Items,j)))
   end
   Items = nil
 end
 
-function SpinnerLibrary.AddItem (Origin, Name, Rarity)
+function SpinnerModule.AddItem (Origin, Name, Rarity)
   if not Origin or not Name or not Rarity then error("No origin or name or rarity given") return end
   table.insert(Origin, { Name, Rarity })
   Sort(Origin)
 end
 
-function SpinnerLibrary.RemoveItem (Origin, Name)
+function SpinnerModule.RemoveItem (Origin, Name)
   if not Origin or not Name then error("No origin or name given") return end
   table.remove(Origin, GetItemPos(Origin,Name))
   Sort(Origin)
 end
 
-return SpinnerLibrary
+return SpinnerModule
